@@ -18,13 +18,14 @@ library(sjstats)
 library(lm.beta)
 library(DescTools)
 
-setwd("~/MSBA/MOD3/Code/R/7208")
+setwd("~/MSBA/MOD3/Code/R/7208_1-3")
 
 
 dat.Eretail <-  read_xls("data/Eretail7040.xls", sheet=1)
-dat.WHBM <- read_xlsx("data/WHBM7040.xlsx", sheet = 1) 
-dat.PreDrugData <- read_xlsx("data/PreDrugData7040.xlsx", sheet = 1)
-dat.AlcoaData <- read_xlsx("data/Alcoa.xlsx", sheet = 1)
+# Not used...
+# dat.WHBM <- read_xlsx("data/WHBM7040.xlsx", sheet = 1) 
+# dat.PreDrugData <- read_xlsx("data/PreDrugData7040.xlsx", sheet = 1)
+# dat.AlcoaData <- read_xlsx("data/Alcoa.xlsx", sheet = 1)
 
 str(dat.Eretail)
 
@@ -41,8 +42,8 @@ plot(dat.Eretail$discount, dat.Eretail$satfirm)
 barplot(table(dat.Eretail$eschool))
 
 #5. One-Way ANOVA in R 
-dat.Eretail$BuyAgain <- factor(dat.Eretail$intent)
-model <- lm(satfirm ~ BuyAgain, data = dat.Eretail)
+dat.Eretail$BuyAgainFac <- factor(dat.Eretail$BuyAgain)
+model <- lm(satfirm ~ BuyAgainFac, data = dat.Eretail)
 summary(model)
 allEffects (model)
 Anova(model)
@@ -79,7 +80,7 @@ plot(allEffects(dat.Eretail.lm.reg))
 describe(dat.Eretail[, c("intent" ,"satfirm" ,"cusij" ,"severity")])
 cor(dat.Eretail[, c("intent" ,"satfirm" ,"cusij" ,"severity")])
 corrplot(cor(dat.Eretail[, c("intent" ,"satfirm" ,"cusij" ,"severity")]))
-myGLM <- glm(BuyAgain ~ satfirm + cusij + severity, data = dat.Eretail, family = "binomial")
+myGLM <- glm(BuyAgainFac ~ satfirm + cusij + severity, data = dat.Eretail, family = "binomial")
 summary(myGLM)
 AIC(myGLM)
 anova(myGLM, test = "Chisq")
@@ -88,7 +89,7 @@ exp(coef(myGLM))
 PseudoR2(myGLM)
 plot(allEffects(myGLM))
 plot(allEffects(myGLM), type = "response")
-confusionMatrix(factor(ifelse(predict(myGLM, type = "response") >= .5, 1, 0)), reference = factor(dat.Eretail$BuyAgain))
+confusionMatrix(factor(ifelse(predict(myGLM, type = "response") >= .5, 1, 0)), reference = factor(dat.Eretail$BuyAgainFac))
 
 
 
