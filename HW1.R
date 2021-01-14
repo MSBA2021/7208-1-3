@@ -13,7 +13,7 @@ library(plyr)
 library(dplyr)
 library(ggmap)
 library(ggpubr)
-library(ggExtra)
+library(ggExtra)[]
 library(DescTools)
 library(corrplot)
 
@@ -32,29 +32,28 @@ ggplotRegression <- function (fit, lineCol) {
 
 
 alcoaDF <- read_excel("data/Alcoa1.xlsx")
-print(alcoaDF)
-str(alcoaDF)
-head(alcoaDF)
+alcoaDF <- as.data.frame(alcoaDF)
+plot(alcoaDF)
+# print(alcoaDF)
+# str(alcoaDF)
+# head(alcoaDF)
 
-alcoaCor <- alcoaDF[c("specbuy","speed",
-                      "pricefle","mimage","service","quality")] %>% 
-  cor()
+#	Explained variance estimates
+x <- describe(alcoaDF[c("speed","pricefle","mimage","service","quality","satisfaction")])
 
-
-
-# alcoaCor <-cor(alcoaDF)
+alcoaCor <- alcoaDF[c("specbuy","speed","pricefle","mimage","service","quality")] %>% cor()
 corrplot(alcoaCor, method="circle")
 
 all <- lm(satisfaction ~ speed+specbuy+pricefle+mimage+service+quality, data= alcoaDF)
 summary(all)
 coef(all)
-# std coeff
+# standardized coefficients
 lm.beta(all)
 
 
 Anova(all, test = "Chisq")
-exp(confint(all))
-exp(coef(all))
+# exp(confint(all))
+# exp(coef(all))
 # PseudoR2(all)
 plot(allEffects(all))
 plot(allEffects(all), type = "response")
@@ -69,7 +68,7 @@ x=ggplotRegression(speed, "#ADB9D3")
 ggpar(p=x, title=" Speed v satisfaction Regression")
 
 specbuy <- lm(satisfaction ~ specbuy, data= alcoaDF)
-x=ggplotRegression(specbuy, s"#ADB9D3") 
+x=ggplotRegression(specbuy, "#ADB9D3") 
 ggpar(p=x, title="specbuy v satisfaction Regression")
 
 pricefle <- lm(satisfaction ~ pricefle, data= alcoaDF)
