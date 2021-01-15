@@ -19,6 +19,7 @@ library(corrplot)
 
 setwd("~/MSBA/MOD3/Code/R/7208_1-3")
 
+#https://sejohnston.com/2012/08/09/a-quick-and-easy-function-to-plot-lm-results-in-r/
 ggplotRegression <- function (fit, lineCol) {
   require(ggplot2)
   ggplot(fit$model, aes_string(x = names(fit$model)[2], y = names(fit$model)[1])) + 
@@ -46,6 +47,7 @@ corrplot(alcoaCor, method="circle")
 
 all <- lm(satisfaction ~ speed+specbuy+pricefle+mimage+service+quality, data= alcoaDF)
 summary(all)
+
 coef(all)
 # standardized coefficients
 lm.beta(all)
