@@ -7,10 +7,10 @@ library(DescTools)
 library(effects)
 
 
-setwd("~/MSBA/MOD3/7208 Customer Analytics/code/7208_6")
+setwd("~/MSBA/MOD3/7208 Customer Analytics/code/7208_Homework")
 
 # Read data
-alcoa <- read_excel('../data/alcoa.xls', sheet=1)
+alcoa <- read_excel('data/alcoa.xls', sheet=1)
 alcoa <- as.data.frame(alcoa)
 
 #Summary
@@ -23,6 +23,9 @@ summary(alcoa[,c('CustomerValueGroup','specbuy','service','pricefle','speed')])
 correlations <- cor(alcoa[,c('CustomerValueGroup','specbuy','service','pricefle','speed')])
 corrplot(correlations, method="circle")
 
+# set DV to factor
+alcoa$CustomerValueGroup = factor(alcoa$CustomerValueGroup)
+
 #Feature plot / EDA
 xAxis <- alcoa[,c('specbuy','service','pricefle','speed')]
 yAxis <- alcoa[,'CustomerValueGroup']
@@ -30,8 +33,7 @@ scales <- list(x=list(relation="free"), y=list(relation="free"))
 featurePlot(x=xAxis, y=yAxis, plot="density", auto.key = list(columns = 2), scales=scales)
 featurePlot(x=xAxis, y=yAxis, plot="box", auto.key = list(columns = 2), scales=scales)
 
-# Set DV to factor, calculate model
-alcoa$CustomerValueGroup = factor(alcoa$CustomerValueGroup)
+# Calculate model
 logit <- glm(CustomerValueGroup ~ specbuy + service + pricefle + speed, data = alcoa, family = binomial(link="logit"))
 summary(logit)
 
