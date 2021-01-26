@@ -5,8 +5,9 @@ To make this code work on your computer, adjust the line within the R script tha
 
 Ex:
   Download R scripts and data folder into your directory, change line below from
+  
      `setwd("~/MSBA/MOD3/7208 Customer Analytics/code/7208_Homework")`
      
-     to
+to
      
      `setwd("C:/Users/[your user name]/Desktop")`
