@@ -1,5 +1,5 @@
 # 7208_Homework
-R Code and data for classes 1-3
+R Code and data for 7208
 
 To make this code work on your computer, adjust the line within the R script that sets the working directory to whereever you are saving the R file and the data directory.
 
