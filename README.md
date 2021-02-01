@@ -11,3 +11,5 @@ Ex:
 to
      
      `setwd("C:/Users/[your user name]/Desktop")`
+
+...or wherever you want to put this script and the data.
