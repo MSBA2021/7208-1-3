@@ -45,7 +45,7 @@ dat.AlcoaData <- as.data.frame(dat.AlcoaData)
 
 
 
-dat.AlcoaData.selected <- alcoa[,c('Zspeed','Zpricefle','Zmimage','Zquality', 'Zsatisfaction')]
+dat.AlcoaData.selected <- dat.AlcoaData[,c('Zspeed','Zpricefle','Zmimage','Zquality', 'Zsatisfaction')]
 summary(clusterMe)
 
 # R Script:  Cluster Analysis Alcoa for 3 clusters
