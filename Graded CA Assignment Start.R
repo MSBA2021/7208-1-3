@@ -41,7 +41,7 @@ setwd("C:/Users/name/Documents/7208")
 
 # Read data
 dat.AlcoaData <- read_excel('data/alcoa.xls', sheet=1)
-dat.AlcoaData <- as.data.frame(alcoa)
+dat.AlcoaData <- as.data.frame(dat.AlcoaData)
 
 
 
