@@ -23,8 +23,6 @@ summary(alcoa[,c('CustomerValueGroup','pricefle','quality','speed')])
 #Correlation plot
 correlations <- cor(alcoa[,c('CustomerValueGroup','pricefle','quality','speed')])
 corrplot.mixed(correlations, upper='ellipse')
-corrplot.mixed(correlations, upper='ellipse')
-
 
 # set DV to factor
 alcoa$CustomerValueGroup = factor(alcoa$CustomerValueGroup)
@@ -46,7 +44,7 @@ summary(logit)
 AIC(logit)
 # exp(confint(logit))
 # exp(coef(logit))
-
+# Shows exp Odds ratio and confidence interval
 exp(cbind(OddsRatio = coef(logit), confint(logit)))
 PseudoR2(logit)
 # plot(allEffects(logit))
@@ -73,13 +71,9 @@ ggplot(data=predicted.data, aes(x=rank, y=probability.of.CVG)) +
 
 #Oneway ANOVA Check
 
-# dat.AlcoaData$CustomerValueGroup <- factor(dat.AlcoaData$CustomerValueGroup)
-
-
 alcoa$CustomerValueGroup = as.numeric(alcoa$CustomerValueGroup)
 
 
-# alcoa <- read_excel('data/alcoa.xls', sheet=1)
 alcoa <- as.data.frame(alcoa)
 anova_one_way <- aov(CustomerValueGroup ~ pricefle+quality+speed,  data = alcoa)
 
