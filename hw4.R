@@ -28,6 +28,10 @@ setwd("~/MSBA/MOD3/7208 Customer Analytics/code/7208_Homework")
 alcoa <- read_excel('data/alcoa.xls', sheet=1)
 alcoa <- as.data.frame(alcoa)
 
+anovadf <-alcoa
+anova_one_way <- aov(usage  ~ Zspeed+Zmimage+Zquality+Zsatisfaction,  data = anovadf)
+summary(anova_one_way)
+TukeyHSD(anova_one_way)
 #Summary
 # summary(alcoa)
 
@@ -48,8 +52,9 @@ plot(findClusters)
 # K3
 #-----------------------------------
 k3 <- kmeans(clusterMe, centers = 3, nstart = 10)
-p1 <- fviz_cluster(k3, geom = "point", data = clusterMe) + ggtitle("k = 2")
+p1 <- fviz_cluster(k3, geom = "point", data = clusterMe) + ggtitle("k = 3")
 p1
+k3
 k3$size
 k3$centers
 #anova
@@ -62,8 +67,9 @@ anova(clusterMod)
 # K4
 #-----------------------------------
 k4 <- kmeans(clusterMe, centers = 4, nstart = 10)
-p3 <- fviz_cluster(k4, geom = "point",  data = clusterMe) + ggtitle("k = 3")
+p3 <- fviz_cluster(k4, geom = "point",  data = clusterMe) + ggtitle("k = 4")
 p3
+k4
 k4$size
 k4$centers
 #anova
