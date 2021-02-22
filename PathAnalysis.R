@@ -31,6 +31,8 @@ summary(fit, fit.measures = TRUE, standardized=T,rsquare=T,modindices = TRUE)
 #plot the paths a couple different ways
 semPaths(fit, what='std', whatLabels = "std", edge.label.cex = 1.2, label.cex = 2, layout = "tree2", rotation=2, edge.color='purple')
 
+semPaths(fit, what='std', whatLabels = "par", edge.label.cex = 1.2, label.cex = 2, layout = "tree2", rotation=2, edge.color='purple')
+
 # semPaths(fit, what='par', whatLabels = "par", edge.label.cex = 1.2, label.cex = 2, layout = "tree2", rotation=2)
 
 # semPaths(fit, 'std', layout = 'tree2', intercepts = TRUE)

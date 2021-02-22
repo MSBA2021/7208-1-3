@@ -35,7 +35,7 @@ TukeyHSD(anova_one_way)
 #Summary
 # summary(alcoa)
 
-clusterMe <- alcoa[,c('Zspeed','Zpricefle','Zmimage','Zquality', 'Zsatisfaction')]
+clusterMe <- alcoa[,c('Zspeed','Zpricefle','Zmimage','Zsimage','Zquality', 'Zsatisfaction')]
 summary(clusterMe)
 
 # Returns a matrix with K.max rows and 4 columns, named "logW", "E.logW", "gap", and "SE.sim", 
